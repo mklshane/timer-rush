@@ -1,5 +1,6 @@
 import type React from "react";
 import { useState, useEffect, useRef } from "react";
+import  axiosHeader  from "./utils/axiosHeader";
 
 type GameState =
   | "nameEntry"
@@ -68,7 +69,7 @@ const TimerGame: React.FC = () => {
   };
 
   // Stop the timer
-  const stopTimer = () => {
+  const stopTimer = async () => {
     if (timerRef.current) {
       clearInterval(timerRef.current);
       timerRef.current = null;
@@ -105,9 +106,19 @@ const TimerGame: React.FC = () => {
       actual: actualTime,
     };
 
-    setLeaderboard((prev) =>
-      [...prev, result].sort((a, b) => a.difference - b.difference)
-    );
+    try {
+      await axiosHeader.post("/timer/score", {
+        name,
+        target: targetTime,
+        actual: actualTime,
+        difference: diff,
+        accuracy: acc,
+      });
+
+      await fetchLeaderboard();
+    } catch (error) {
+      console.error("Error posting score: ", error); 
+    }
     setGameState("results");
   };
 
@@ -126,6 +137,22 @@ const TimerGame: React.FC = () => {
       }
     }, 0);
   };
+
+  const fetchLeaderboard = async () => {
+    try {
+      const response = await axiosHeader.get("/timer/leaderboard");
+      console.log("Leaderboard:", response.data.leaderboard );
+      setLeaderboard(response.data.leaderboard);
+    } catch (error) {
+      console.error("Error fetching leaderboard: ", error);
+    }
+  }
+
+  // fetch leaderboard
+  useEffect(() => {
+    fetchLeaderboard();
+  }, [])
+
 
   // Handle keyboard and touch events
   useEffect(() => {
@@ -168,6 +195,8 @@ const TimerGame: React.FC = () => {
       }
     };
   }, []);
+
+
 
   return (
     <div>
