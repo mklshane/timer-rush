@@ -69,7 +69,7 @@ const TimerGame: React.FC = () => {
   };
 
   // Stop the timer
-  const stopTimer = async () => {
+  const stopTimer = () => {
     if (timerRef.current) {
       clearInterval(timerRef.current);
       timerRef.current = null;
@@ -79,42 +79,42 @@ const TimerGame: React.FC = () => {
       hideTimerTimeoutRef.current = null;
     }
 
-    stopTimeRef.current = Date.now();
-    const actualTime = (stopTimeRef.current - startTimeRef.current) / 1000;
+    const stopTime = Date.now();
+    const actualTime = (stopTime - startTimeRef.current) / 1000;
     const diff = Math.abs(actualTime - targetTime);
     const acc = Math.max(0, 100 - (diff / targetTime) * 100);
+    const playerRank = getRank(diff);
 
+    // update UI instantly
+    setElapsedTime(actualTime);
     setDifference(diff);
     setAccuracy(acc);
-    setElapsedTime(actualTime);
-
-    let playerRank = "";
-    if (diff < 0.1) playerRank = "TIME LORD";
-    else if (diff < 0.5) playerRank = "MASTER";
-    else if (diff < 1.0) playerRank = "EXPERT";
-    else if (diff < 1.5) playerRank = "SKILLED";
-    else if (diff < 2.0) playerRank = "NOVICE";
-    else playerRank = "BEGINNER";
-
     setRank(playerRank);
+    setGameState("results");
 
-    
-
-    try {
-      await axiosHeader.post("/timer/score", {
+    // send score in background
+    axiosHeader
+      .post("/timer/score", {
         name,
         target: targetTime,
         actual: actualTime,
         difference: diff,
         accuracy: acc,
-      });
-
-      await fetchLeaderboard();
-    } catch (error) {
-      console.error("Error posting score: ", error); 
-    }
-    setGameState("results");
+      })
+      .then(fetchLeaderboard)
+      .catch(console.error);
   };
+
+  const getRank = (diff: number) => {
+    if (diff < 0.1) return "TIME LORD";
+    if (diff < 0.5) return "MASTER";
+    if (diff < 1.0) return "EXPERT";
+    if (diff < 1.5) return "SKILLED";
+    if (diff < 2.0) return "NOVICE";
+    return "BEGINNER";
+  };
+
+
 
   // Reset the game
   const resetGame = () => {
@@ -156,10 +156,10 @@ const TimerGame: React.FC = () => {
       }
       if (
         (gameState === "timerVisible" || gameState === "timerHidden") &&
-        e.key === " "
+        (e.key === "Enter" || e.key === " ")
       ) {
-        stopTimer();
         e.preventDefault();
+        stopTimer();
       }
     };
 
