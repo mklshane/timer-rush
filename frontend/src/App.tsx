@@ -98,13 +98,7 @@ const TimerGame: React.FC = () => {
 
     setRank(playerRank);
 
-    const result: PlayerResult = {
-      name,
-      difference: diff,
-      accuracy: acc,
-      target: targetTime,
-      actual: actualTime,
-    };
+    
 
     try {
       await axiosHeader.post("/timer/score", {
