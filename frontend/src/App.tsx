@@ -30,7 +30,6 @@ const TimerGame: React.FC = () => {
 
   const timerRef = useRef<number | null>(null);
   const startTimeRef = useRef<number>(0);
-  const stopTimeRef = useRef<number>(0);
   const hideTimerTimeoutRef = useRef<number | null>(null);
   const nameInputRef = useRef<HTMLInputElement>(null);
 
