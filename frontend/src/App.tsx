@@ -618,7 +618,7 @@ const TimerGame: React.FC = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          {leaderboard.slice(0, 5).map((player, index) => (
+                          {leaderboard.slice(0, 10).map((player, index) => (
                             <tr
                               key={index}
                               className={`border-b-2 border-[#cc99ff] ${
