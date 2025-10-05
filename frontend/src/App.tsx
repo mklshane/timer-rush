@@ -33,9 +33,9 @@ const TimerGame: React.FC = () => {
   const hideTimerTimeoutRef = useRef<number | null>(null);
   const nameInputRef = useRef<HTMLInputElement>(null);
 
-  // Generate random target time between 6 and 20 seconds
+  /// Generate random target time between 15 and 30 seconds
   const generateTargetTime = () => {
-    return Math.floor(Math.random() * 15) + 6;
+    return Math.floor(Math.random() * 16) + 15;
   };
 
   // Start the game
@@ -113,8 +113,6 @@ const TimerGame: React.FC = () => {
     return "BEGINNER";
   };
 
-
-
   // Reset the game
   const resetGame = () => {
     setGameState("nameEntry");
@@ -134,18 +132,17 @@ const TimerGame: React.FC = () => {
   const fetchLeaderboard = async () => {
     try {
       const response = await axiosHeader.get("/timer/leaderboard");
-      console.log("Leaderboard:", response.data.leaderboard );
+      console.log("Leaderboard:", response.data.leaderboard);
       setLeaderboard(response.data.leaderboard);
     } catch (error) {
       console.error("Error fetching leaderboard: ", error);
     }
-  }
+  };
 
   // fetch leaderboard
   useEffect(() => {
     fetchLeaderboard();
-  }, [])
-
+  }, []);
 
   // Handle keyboard and touch events
   useEffect(() => {
@@ -188,8 +185,6 @@ const TimerGame: React.FC = () => {
       }
     };
   }, []);
-
-
 
   return (
     <div>

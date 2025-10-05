@@ -16,9 +16,6 @@ app.use(express.json());
 app.use(cors());
 app.use("/api/timer", timerRoutes)
 
-// Routes
-
-
 // Error handling
 
 // Server running

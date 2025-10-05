@@ -1,6 +1,5 @@
 import Score from "../models/score.model.js";
 
-
 export const setScore = async (req, res) => {
     try {
         const { name, target, actual, difference, accuracy } = req.body;
