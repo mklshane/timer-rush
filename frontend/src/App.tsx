@@ -529,6 +529,8 @@ const TimerGame: React.FC = () => {
                   </div>
                 </div>
 
+                {/* 
+
                 <div className="flex flex-col sm:flex-row gap-4 mb-6">
                   <button
                     onClick={startGame}
@@ -552,7 +554,8 @@ const TimerGame: React.FC = () => {
                   >
                     NEW PLAYER
                   </button>
-                </div>
+                </div> */}
+
 
                 {leaderboard.length > 0 && (
                   <div className="mb-10 p-4 border-4 border-[#660099] rounded bg-[#9933cc]">
@@ -618,7 +621,7 @@ const TimerGame: React.FC = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          {leaderboard.slice(0, 10).map((player, index) => (
+                          {leaderboard.slice(0, 10) .map((player, index) => (
                             <tr
                               key={index}
                               className={`border-b-2 border-[#cc99ff] ${
