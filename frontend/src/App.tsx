@@ -114,7 +114,7 @@ const TimerGame: React.FC = () => {
   };
 
   // Reset the game
-  const resetGame = () => {
+  /* const resetGame = () => {
     setGameState("nameEntry");
     setName("");
     setTargetTime(0);
@@ -127,7 +127,7 @@ const TimerGame: React.FC = () => {
         nameInputRef.current.focus();
       }
     }, 0);
-  };
+  }; */
 
   const fetchLeaderboard = async () => {
     try {
