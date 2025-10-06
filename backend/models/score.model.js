@@ -1,3 +1,4 @@
+
 import mongoose from "mongoose";
 
 const scoreSchema = new mongoose.Schema({
@@ -22,9 +23,12 @@ const scoreSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  rank: {
-    type: Number,
-    required: false,
+  event: {
+   
+    type: String,
+    required: true,
+    enum: ["cs", "it"], 
+    default: "cs",
   },
   playedAt: {
     type: Date,
