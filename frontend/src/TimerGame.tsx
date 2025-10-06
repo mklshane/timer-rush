@@ -210,11 +210,11 @@ const TimerGame: React.FC = () => {
         <div className="absolute bottom-12 right-12 w-2 h-2 bg-[#00ff00] animate-pulse"></div>
 
         {/* Game Content */}
-        <div className="p-6 flex flex-col items-center md:max-w-lg max-w-lg">
+        <div className="p-4 md:p-6 flex flex-col items-center w-full max-w-md mx-auto">
           {/* Header */}
-          <div className="text-center mb-8">
+          <div className="text-center mb-6 md:mb-8">
             <h1
-              className="text-3xl md:text-4xl font-black tracking-wider mb-2"
+              className="text-2xl md:text-4xl font-black tracking-wider mb-2"
               style={{
                 color: "#00ffcc",
                 textShadow: `
@@ -309,7 +309,7 @@ const TimerGame: React.FC = () => {
             )}
 
             {gameState === "targetDisplay" && (
-              <div className="p-6 border-4 border-[#ff5500] rounded bg-[#ffff00] animate-pulse">
+              <div className="p-4 md:p-6 border-4 border-[#ff5500] rounded bg-[#ffff00] animate-pulse">
                 <h2
                   className="text-sm md:text-base font-bold mb-4 text-center"
                   style={{
@@ -322,7 +322,7 @@ const TimerGame: React.FC = () => {
                   TARGET TIME
                 </h2>
                 <div
-                  className="text-3xl md:text-4xl font-black text-center mb-4"
+                  className="text-2xl md:text-4xl font-black text-center mb-4"
                   style={{
                     color: "#ff5500",
                     textShadow: `
@@ -367,14 +367,14 @@ const TimerGame: React.FC = () => {
                 </div>
 
                 <div
-                  className={`p-6 border-4 rounded mb-6 text-center ${
+                  className={`p-4 md:p-6 border-4 rounded mb-6 text-center ${
                     gameState === "timerVisible"
                       ? "bg-[#00ff00] border-[#00ff00] animate-pulse"
                       : "bg-gray-500 border-gray-500"
                   }`}
                 >
                   <div
-                    className="text-3xl md:text-4xl font-black mb-2"
+                    className="text-2xl md:text-4xl font-black mb-2"
                     style={{
                       color:
                         gameState === "timerVisible" ? "#00ff00" : "#999999",
@@ -435,10 +435,11 @@ const TimerGame: React.FC = () => {
             )}
 
             {gameState === "results" && (
-              <div>
-                <div className="mb-6 p-4 border-4 border-[#ff00ff] rounded bg-[#ff66cc]">
+              <div className="space-y-4">
+                {/* Results Section - Made smaller */}
+                <div className="p-3 md:p-4 border-4 border-[#ff00ff] rounded bg-[#ff66cc]">
                   <h2
-                    className="text-sm md:text-base font-bold mb-4 text-center"
+                    className="text-sm font-bold mb-3 text-center"
                     style={{
                       color: "#ff00ff",
                       textShadow:
@@ -449,7 +450,7 @@ const TimerGame: React.FC = () => {
                     RESULTS
                   </h2>
 
-                  <div className="grid grid-cols-2 gap-3 mb-4">
+                  <div className="grid grid-cols-2 gap-2 mb-3">
                     {[
                       {
                         label: "TARGET",
@@ -482,26 +483,26 @@ const TimerGame: React.FC = () => {
                     ].map((item, index) => (
                       <div
                         key={index}
-                        className={`p-3 border-4 ${item.border} ${item.bg} rounded text-center`}
+                        className={`p-2 border-4 ${item.border} ${item.bg} rounded text-center`}
                       >
                         <div
-                          className={`text-xs font-bold mb-2 ${item.text}`}
+                          className={`text-[10px] md:text-xs font-bold mb-1 ${item.text}`}
                           style={{
                             textShadow:
-                              "-2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff",
+                              "-1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff",
                             fontFamily: '"Press Start 2P", monospace',
                           }}
                         >
                           {item.label}
                         </div>
                         <div
-                          className={`text-lg font-black ${item.text}`}
+                          className={`text-sm md:text-lg font-black ${item.text}`}
                           style={{
                             textShadow: `
-                              -2px -2px 0 #fff,
-                              2px -2px 0 #fff,
-                              -2px 2px 0 #fff,
-                              2px 2px 0 #fff
+                              -1px -1px 0 #fff,
+                              1px -1px 0 #fff,
+                              -1px 1px 0 #fff,
+                              1px 1px 0 #fff
                             `,
                             fontFamily: '"Press Start 2P", monospace',
                           }}
@@ -512,25 +513,25 @@ const TimerGame: React.FC = () => {
                     ))}
                   </div>
 
-                  <div className="mb-4 p-4 border-4 border-[#ff9900] rounded bg-[#ffcc00] text-center">
+                  <div className="p-3 border-4 border-[#ff9900] rounded bg-[#ffcc00] text-center">
                     <div
-                      className="text-xs font-bold mb-3 text-[#663300]"
+                      className="text-[10px] font-bold mb-2 text-[#663300]"
                       style={{
                         textShadow:
-                          "-2px -2px 0 #fff, 2px -2px 0 #fff, -2px 2px 0 #fff, 2px 2px 0 #fff",
+                          "-1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff",
                         fontFamily: '"Press Start 2P", monospace',
                       }}
                     >
                       RANK
                     </div>
                     <div
-                      className="text-xl font-black text-[#663300] animate-pulse"
+                      className="text-lg md:text-xl font-black text-[#663300] animate-pulse"
                       style={{
                         textShadow: `
-                          -3px -3px 0 #fff,
-                          3px -3px 0 #fff,
-                          -3px 3px 0 #fff,
-                          3px 3px 0 #000
+                          -2px -2px 0 #fff,
+                          2px -2px 0 #fff,
+                          -2px 2px 0 #fff,
+                          2px 2px 0 #000
                         `,
                         fontFamily: '"Press Start 2P", monospace',
                       }}
@@ -540,10 +541,11 @@ const TimerGame: React.FC = () => {
                   </div>
                 </div>
 
+                {/* Leaderboard Section - Made smaller */}
                 {leaderboard.length > 0 && (
-                  <div className="mb-10 p-4 border-4 border-[#660099] rounded bg-[#9933cc]">
+                  <div className="p-3 md:p-4 border-4 border-[#660099] rounded bg-[#9933cc]">
                     <h3
-                      className="text-sm md:text-base font-bold mb-3 text-center"
+                      className="text-sm font-bold mb-3 text-center"
                       style={{
                         color: "#cc99ff",
                         textShadow:
@@ -554,48 +556,48 @@ const TimerGame: React.FC = () => {
                       {currentEvent.toUpperCase()} LEADERBOARD
                     </h3>
                     <div className="overflow-x-auto">
-                      <table className="w-full text-xs">
+                      <table className="w-full text-[10px] md:text-xs">
                         <thead>
                           <tr className="border-b-2 border-[#cc99ff]">
                             <th
-                              className="text-left py-2 px-3 font-bold"
+                              className="text-left py-1 px-2 font-bold"
                               style={{
                                 color: "#cc99ff",
                                 textShadow:
-                                  "-2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000",
+                                  "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
                                 fontFamily: '"Press Start 2P", monospace',
                               }}
                             >
                               RANK
                             </th>
                             <th
-                              className="text-left py-2 px-3 font-bold"
+                              className="text-left py-1 px-2 font-bold"
                               style={{
                                 color: "#cc99ff",
                                 textShadow:
-                                  "-2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000",
+                                  "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
                                 fontFamily: '"Press Start 2P", monospace',
                               }}
                             >
                               NAME
                             </th>
                             <th
-                              className="text-left py-2 px-3 font-bold"
+                              className="text-left py-1 px-2 font-bold"
                               style={{
                                 color: "#cc99ff",
                                 textShadow:
-                                  "-2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000",
+                                  "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
                                 fontFamily: '"Press Start 2P", monospace',
                               }}
                             >
                               DIFF
                             </th>
                             <th
-                              className="text-left py-2 px-3 font-bold"
+                              className="text-left py-1 px-2 font-bold"
                               style={{
                                 color: "#cc99ff",
                                 textShadow:
-                                  "-2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000",
+                                  "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
                                 fontFamily: '"Press Start 2P", monospace',
                               }}
                             >
@@ -614,44 +616,44 @@ const TimerGame: React.FC = () => {
                               }`}
                             >
                               <td
-                                className="py-2 px-3 font-bold"
+                                className="py-1 px-2 font-bold"
                                 style={{
                                   color: "#ffffff",
                                   textShadow:
-                                    "-2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000",
+                                    "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
                                   fontFamily: '"Press Start 2P", monospace',
                                 }}
                               >
                                 #{index + 1}
                               </td>
                               <td
-                                className="py-2 px-3 font-bold"
+                                className="py-1 px-2 font-bold"
                                 style={{
                                   color: "#ffffff",
                                   textShadow:
-                                    "-2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000",
+                                    "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
                                   fontFamily: '"Press Start 2P", monospace',
                                 }}
                               >
                                 {player.name}
                               </td>
                               <td
-                                className="py-2 px-3 font-bold"
+                                className="py-1 px-2 font-bold"
                                 style={{
                                   color: "#ffffff",
                                   textShadow:
-                                    "-2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000",
+                                    "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
                                   fontFamily: '"Press Start 2P", monospace',
                                 }}
                               >
                                 {player.difference.toFixed(2)}s
                               </td>
                               <td
-                                className="py-2 px-3 font-bold"
+                                className="py-1 px-2 font-bold"
                                 style={{
                                   color: "#ffffff",
                                   textShadow:
-                                    "-2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000",
+                                    "-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000",
                                   fontFamily: '"Press Start 2P", monospace',
                                 }}
                               >
