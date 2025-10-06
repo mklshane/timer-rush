@@ -28,6 +28,8 @@ services:
         name: Cache-Control
         value: no-cache
     routes:
-      - type: rewrite
+      - type: header
         source: /*
-        destination: /index.html
+        headers:
+          - key: Content-Type
+            value: text/html
