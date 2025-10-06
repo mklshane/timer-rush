@@ -210,11 +210,11 @@ const TimerGame: React.FC = () => {
         <div className="absolute bottom-12 right-12 w-2 h-2 bg-[#00ff00] animate-pulse"></div>
 
         {/* Game Content */}
-        <div className="p-4 md:p-6 flex flex-col items-center w-full max-w-md mx-auto">
+        <div className="p-6 flex flex-col items-center md:max-w-lg max-w-lg">
           {/* Header */}
-          <div className="text-center mb-6 md:mb-8">
+          <div className="text-center mb-8">
             <h1
-              className="text-2xl md:text-4xl font-black tracking-wider mb-2"
+              className="text-3xl md:text-4xl font-black tracking-wider mb-2"
               style={{
                 color: "#00ffcc",
                 textShadow: `
@@ -309,7 +309,7 @@ const TimerGame: React.FC = () => {
             )}
 
             {gameState === "targetDisplay" && (
-              <div className="p-4 md:p-6 border-4 border-[#ff5500] rounded bg-[#ffff00] animate-pulse">
+              <div className="p-6 border-4 border-[#ff5500] rounded bg-[#ffff00] animate-pulse">
                 <h2
                   className="text-sm md:text-base font-bold mb-4 text-center"
                   style={{
@@ -322,7 +322,7 @@ const TimerGame: React.FC = () => {
                   TARGET TIME
                 </h2>
                 <div
-                  className="text-2xl md:text-4xl font-black text-center mb-4"
+                  className="text-3xl md:text-4xl font-black text-center mb-4"
                   style={{
                     color: "#ff5500",
                     textShadow: `
@@ -367,14 +367,14 @@ const TimerGame: React.FC = () => {
                 </div>
 
                 <div
-                  className={`p-4 md:p-6 border-4 rounded mb-6 text-center ${
+                  className={`p-6 border-4 rounded mb-6 text-center ${
                     gameState === "timerVisible"
                       ? "bg-[#00ff00] border-[#00ff00] animate-pulse"
                       : "bg-gray-500 border-gray-500"
                   }`}
                 >
                   <div
-                    className="text-2xl md:text-4xl font-black mb-2"
+                    className="text-3xl md:text-4xl font-black mb-2"
                     style={{
                       color:
                         gameState === "timerVisible" ? "#00ff00" : "#999999",
